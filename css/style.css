@@ -1,0 +1,43 @@
+body {
+}
+
+#click_increment {
+  position: absolute;
+  color: yellow;
+}
+
+#animate {
+    position: absolute;
+    top: 330px;
+    left: 0px;
+}
+
+.miner {
+    position: absolute;
+    top: 252px;
+    left: 230px;
+}
+
+.container {
+	position: relative;
+	padding:5px 30px 30px 30px;
+	margin:30px;
+	border:solid white 1px;
+	border-radius:5px;
+	/*background-color:#e6e6e6;*/
+	text-align:left;
+}
+
+.error {
+  position: relative;
+  color: red;
+  font-size: 20px;
+  margin:60px;
+  text-align:left;
+}
+
+.btn-success, .btn-danger {
+  width:200px;
+}
+
+

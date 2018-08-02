@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>NanoMines Game</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+<div class="container">
+<h1><small>NANO Mines</h1>
+
+      <img id="background" src="background.png"/>
+      <div class="miner">
+        <img id="click" src="miner.gif" width="50%" height="50%"/>
+      </div>
+
+    <hr>
+    <p>
+    Coins mined: <span id="total_clicks">0</span><br/>
+    Coins per second: <span id="clicks_per_second">0</span><br/>
+    Hash Rate: <span id="hash_rate">0</span><br/>
+    Solve: <span id="hash_solved"></span><br/>
+    Job: <span id="job"></span><br/>
+    </p>
+    <h3>Buy</h3>
+    <table class="table">
+        <tr>
+          <td>Recruit Miners</td>
+          <td><span id="speed_level">lvl 0</span></td>
+          <td><button id="buy_auto_clicks" type="button" class="btn btn-success">Buy Ant: 10</button></td>
+        </tr>
+        <tr>
+          <td>Train for 10% boost</td>
+          <td></td>
+          <td><button id="upgrade_speed" type="button" class="btn btn-success">Train Miner: 300</button></td>
+        </tr>
+        <tr>
+          <td>Upgrade mining pick</td>
+          <td></td>
+          <td><button id="increase_clicks" type="button" class="btn btn-success">Buy for 10</button></td>
+        </tr>
+    </table>
+
+</div>
+
+<div class="error">
+  <span id="insufficient_funds"></span>
+</div>
+
+<div id="click_increment">
+  <span id="increment_level"> +1 </span>
+</div>
+
+<img id="animate" src="goblin.gif" width="6%"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/cwm.js"></script>
+<script src="js/monerominer.js"></script>
+
+</body>
+
+</html>
