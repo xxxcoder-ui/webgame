@@ -2,7 +2,7 @@
 var clicks = 0; //increment this by one every click
 var auto_clicks = 0; //automatically click once per second
 var cost = 1; //the cost of this should increase exponentially
-var upgrade_speed = 1; //the level of the speed up upgrade
+var upgrade_speed = 0; //the level of the speed up upgrade
 var click_rate = 1000; //ms between each autoclick
 var interval_auto; //storing our interval here so we can update it
 var click_increment = 1; //how many clicks per click
@@ -33,6 +33,12 @@ function build_wall() { //build wall
     damage = 0;
 }
 
+function build_castle() { //build castle 
+    var e = document.getElementById("castle");
+    e.style.display = 'block'; 
+}
+
+
 function goblin_attack() { //attack wall
     damage++;
     console.log(damage);
@@ -49,6 +55,7 @@ function goblin_attack() { //attack wall
 function spawn_goblin() {
   var elem = document.getElementById("goblin");
   elem.style.display = 'block';
+  var elem2 = document.getElementById("haha");
   var pos = 0;
   var id = setInterval(frame, 5);
   goblin_alive = 1;
@@ -58,6 +65,7 @@ function spawn_goblin() {
 		pos = 0;
 		clearInterval(id);
 		elem.style.display = 'none';
+		elem2.style.display = 'none';
 		goblin_alive = 0; //goblin dies on otherside
     } else if (pos == (wall_pos - 35) && wall_built == 1) {
 		pos = (wall_pos - 35);
@@ -65,16 +73,19 @@ function spawn_goblin() {
     } else if (pos == minerpos) {
 		clicks = 0;
 		pos++;
+		elem2.style.display = 'block';
     } else {
     	if (pos ==minerpos){
     		clicks = 0
     	}
 		pos++; 
 		elem.style.left = pos + 'px'; 
+		elem2.style.left = pos + 55 + 'px';
 		elem.onclick = function(){
 		pos = 0;
 		clearInterval(id);
 		elem.style.display = 'none';
+		elem2.style.display = 'none';
 		goblin_alive = 0; //kill goblin
 		} 
     }
@@ -96,12 +107,12 @@ function buy_something(c, button) {
             var e = document.getElementsByClassName("btn-danger")[0];
             e.className = 'btn btn-success';
         }, 1000);
-        var e2 = document.getElementById("insufficient_funds");
+        var e2 = document.getElementById("give_tip");
     	e2.innerHTML = 'Insufficient funds! ';
         return false;
     }
     clicks -= c;
-    var e2 = document.getElementById("insufficient_funds");
+    var e2 = document.getElementById("give_tip");
     e2.innerHTML = '';
     return true;
 }
@@ -110,12 +121,16 @@ function update_workers() {
     clearInterval(interval_auto);
     interval_auto = setInterval(function() {
         clicks += auto_clicks;
+        if (clicks >= 20) {
+			var e = document.getElementById("build_castle");
+			e.style.display = 'block'; 
+		}
         update_total_clicks();
     }, click_rate);
 }
 //click events
 function coins() {
-  var elem = document.getElementById("click_increment"); 
+  var elem = document.getElementById("coin"); 
   elem.style.display = 'block';  
   var pos = event.clientX;
   var id = setInterval(frame, 5);
@@ -138,33 +153,40 @@ document.getElementById("click").onclick = function() {
 
 };
 document.getElementById("buy_auto_clicks").onclick = function() {
-	train_lvl = 0;
-	var e2 = document.getElementById("speed_level");
-    e2.innerHTML = 'lvl  ' + train_lvl;
-	var upgrade_cost = (Math.pow(3, auto_clicks)) * 10;
-    if (!buy_something(upgrade_cost, this)) return;
-    auto_clicks++;
-    update_total_clicks();
-    var e = document.getElementById("clicks_per_second");
-    e.innerHTML = auto_clicks/upgrade_speed;
-    var e2 = document.getElementById("buy_auto_clicks");
-    e2.innerHTML = 'Buy '+ miners[auto_clicks] + ': for ' + (Math.pow(3, auto_clicks)) * 10;
+	if (train_lvl > 5) {
+		var e2 = document.getElementById("give_tip");
+    	e2.innerHTML = '';
+		train_lvl = 0;
+		var e2 = document.getElementById("speed_level");
+	    e2.innerHTML = 'lvl  ' + train_lvl;
+		var upgrade_cost = (Math.pow(3, auto_clicks)) * 10;
+	    if (!buy_something(upgrade_cost, this)) return;
+	    auto_clicks++;
+	    update_total_clicks();
+	    var e = document.getElementById("clicks_per_second");
+	    e.innerHTML = auto_clicks/upgrade_speed;
+	    var e2 = document.getElementById("buy_auto_clicks");
+	    e2.innerHTML = 'Buy '+ miners[auto_clicks] + ': for ' + (Math.pow(3, auto_clicks)) * 10;
+	} else {
+        var e2 = document.getElementById("give_tip");
+    	e2.innerHTML = 'Updgrade Levels! Need lvl 5!';
+	}
 };
 document.getElementById("upgrade_speed").onclick = function() {
-    var upgrade_cost = (Math.pow(3, upgrade_speed)) * 100;
+    var upgrade_cost = (Math.pow(3, upgrade_speed)) * 10;
     if (!buy_something(upgrade_cost, this)) return;
     train_lvl++;
     upgrade_speed++;
     update_workers();
     var e2 = document.getElementById("upgrade_speed");
-    e2.innerHTML = 'Buy for ' + ((Math.pow(3, upgrade_speed)) * 100);
+    e2.innerHTML = 'Buy for ' + ((Math.pow(3, upgrade_speed)) * 10);
     var e2 = document.getElementById("speed_level");
     e2.innerHTML = 'lvl  ' + train_lvl;
 };
 
 //Increase Click Increment
 document.getElementById("increase_clicks").onclick = function() {
-    var upgrade_cost = (Math.pow(3, click_increment)) * 1;
+    var upgrade_cost = (Math.pow(3, click_increment)) * 10;
     if (!buy_something(upgrade_cost, this)) return;
     click_increment++;
     update_workers();
@@ -179,6 +201,13 @@ document.getElementById("build_wall").onclick = function() {
     var wall_price = 10;
     if (!buy_something(wall_price, this)) return;
     build_wall();
+};
+
+//Build Castle
+document.getElementById("build_castle").onclick = function() {
+    var castle_price = 10;
+    if (!buy_something(castle_price, this)) return;
+    build_castle();
 };
 
 
