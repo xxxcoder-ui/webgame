@@ -6,11 +6,19 @@ body {
   color: yellow;
 }
 
-#animate {
-    position: absolute;
-    top: 330px;
+#goblin{
+	position:absolute;
+	top: 340px;
     left: 0px;
 }
+
+#wall, #brokenwall{
+	position:absolute;
+	top: 320px;
+    left: 150px;
+    transform:flip;
+}
+
 
 .miner {
     position: absolute;
