@@ -1,15 +1,31 @@
 body {
 }
 
-#click_increment {
+#coin {
   position: absolute;
   color: yellow;
+  z-index: 3;
 }
 
 #goblin{
 	position:absolute;
 	top: 340px;
     left: 0px;
+    z-index: 2;
+}
+
+#castle{
+	position:absolute;
+	top: 115px;
+    left: 400px;
+    z-index: 1;
+}
+
+#haha{
+	position:absolute;
+	top: 285px;
+    left: 0px;
+    z-index: 3;
 }
 
 #wall, #brokenwall{
@@ -17,6 +33,7 @@ body {
 	top: 320px;
     left: 150px;
     transform:flip;
+    z-index: 3;
 }
 
 
@@ -36,7 +53,7 @@ body {
 	text-align:left;
 }
 
-.error {
+.give_tip {
   position: relative;
   color: red;
   font-size: 20px;
