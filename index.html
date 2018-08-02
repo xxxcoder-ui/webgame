@@ -22,7 +22,8 @@
 
     <hr>
     <p>
-    Coins mined: <span id="total_clicks">0</span><br/>
+    Coins mined: <span id="total_clicks">0</span><br/>  
+    Pick Quality: <span id="increment_level">+1</span><br/>
     Coins per second: <span id="clicks_per_second">0</span><br/>
     Hash Rate: <span id="hash_rate">0</span><br/>
     Solve: <span id="hash_solved"></span><br/>
@@ -36,34 +37,37 @@
           <td><button id="buy_auto_clicks" type="button" class="btn btn-success">Buy Ant: 10</button></td>
         </tr>
         <tr>
-          <td>Train for 10% boost</td>
+          <td>Train Miners</td>
           <td></td>
-          <td><button id="upgrade_speed" type="button" class="btn btn-success">Train Miner: 300</button></td>
+          <td><button id="upgrade_speed" type="button" class="btn btn-success">Buy for 10</button></td>
         </tr>
         <tr>
           <td>Upgrade mining pick</td>
           <td></td>
-          <td><button id="increase_clicks" type="button" class="btn btn-success">Buy for 10</button></td>
+          <td><button id="increase_clicks" type="button" class="btn btn-success">Buy for 30</button></td>
         <tr>
           <td>Build Wall</td>
           <td></td>
           <td><button id="build_wall" type="button" class="btn btn-success">Buy for 10</button></td>
         </tr>
+        <tr>
+          <td>Buy Castle</td>
+          <td></td>
+          <td><button id="build_castle" type="button" style="display: none" class="btn btn-success">Buy castle for 10</button></td>
+        </tr>
     </table>
 
 </div>
 
-<div class="error">
-  <span id="insufficient_funds"></span>
-</div>
+<span id="give_tip"></span>
 
-<div id="click_increment">
-  <span id="increment_level"> +1 </span>
-</div>
 
+<img id="coin" src="coin.gif" width="2%" style="display: none"/>
 <img id="goblin" src="goblin.gif" width="6%" style="display: none"/>
+<img id="haha" src="haha.png" width="6%" style="display: none"/>
 <img id="wall" src="spikewall.png" width="6%" style="display: none" />
 <img id="brokenwall" src="brokenwall.png" width="6%" style="display: none" />
+<img id="castle" src="castle.png" width="20%" style="display: none" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/index.js"></script>
