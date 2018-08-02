@@ -7,6 +7,13 @@ var click_rate = 1000; //ms between each autoclick
 var interval_auto; //storing our interval here so we can update it
 var click_increment = 1; //how many clicks per click
 var train_lvl = 0;
+var spawntime = 5000;
+var wall_price = 10;
+var wall_built = 0;
+var wall_pos = 800;
+var goblin_alive = 0;
+var damage = 0;
+var minerpos = 240;
 var miners = ["Ant","Spiders","Squirrels","Rabid Dog","10 Rabid Squirrels","Genetically Modified Shark","Exactled Blood Ants","Sabre Tooth Tiger","Diamond Hippos","Black Tigers"];
 //functions
 
@@ -15,16 +22,72 @@ function update_total_clicks() { //updates the number of clicks
     e.innerHTML = clicks;
 }
 
-function spawn_goblin(){
-$(document).ready(function(e) {
-    var width = "+=" + $(document).width();
-    $("#animate").animate({
-    left: width
-  }, 5000, function() {
-    // Animation complete.
-  });
-});
+function build_wall() { //build wall 
+    var e = document.getElementById("brokenwall");
+    e.style.display = 'none'; 
+    var e = document.getElementById("wall");
+    e.style.display = 'block';
+    wall_built = 1;
+   var rect = e.getBoundingClientRect();
+    wall_pos = rect.left;
+    damage = 0;
 }
+
+function goblin_attack() { //attack wall
+    damage++;
+    console.log(damage);
+    if (damage > 1000) {
+    	wall_built = 0;
+    	var e = document.getElementById("wall");
+    	e.style.display = 'none';
+    	var e = document.getElementById("brokenwall");
+    	e.style.display = 'block'; 
+    	damage = 0; //reset damage
+    }
+}
+
+function spawn_goblin() {
+  var elem = document.getElementById("goblin");
+  elem.style.display = 'block';
+  var pos = 0;
+  var id = setInterval(frame, 5);
+  goblin_alive = 1;
+
+  function frame() {
+    if (pos == 650)	{
+		pos = 0;
+		clearInterval(id);
+		elem.style.display = 'none';
+		goblin_alive = 0; //goblin dies on otherside
+    } else if (pos == (wall_pos - 35) && wall_built == 1) {
+		pos = (wall_pos - 35);
+		goblin_attack();
+    } else if (pos == minerpos) {
+		clicks = 0;
+		pos++;
+    } else {
+    	if (pos ==minerpos){
+    		clicks = 0
+    	}
+		pos++; 
+		elem.style.left = pos + 'px'; 
+		elem.onclick = function(){
+		pos = 0;
+		clearInterval(id);
+		elem.style.display = 'none';
+		goblin_alive = 0; //kill goblin
+		} 
+    }
+  }
+}
+
+setInterval(function(){
+	if (goblin_alive == 0) {
+		console.log("spawn");
+    	spawn_goblin();
+	}
+}, 15000)
+
 
 function buy_something(c, button) {
     if (clicks < c) {
@@ -68,14 +131,11 @@ function coins() {
   }
 }
 
-function buildwall() {
-	document.getElementById('wall').style.display='block';
-}
-
 document.getElementById("click").onclick = function() {
     clicks = parseFloat(clicks) + parseFloat(click_increment);
     update_total_clicks(); //updates the text
     coins();
+
 };
 document.getElementById("buy_auto_clicks").onclick = function() {
 	train_lvl = 0;
@@ -113,6 +173,14 @@ document.getElementById("increase_clicks").onclick = function() {
     var e2 = document.getElementById("increment_level");
     e2.innerHTML = '+ ' + click_increment;
 };
+
+//Build Wall
+document.getElementById("build_wall").onclick = function() {
+    var wall_price = 10;
+    if (!buy_something(wall_price, this)) return;
+    build_wall();
+};
+
 
 //Start Autoclickers
 update_workers();
