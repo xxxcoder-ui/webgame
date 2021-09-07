@@ -25,7 +25,7 @@
 //The user's name, analogous to the name specified in the cwm_start(). 
 //This can be anything that is unique to the user on your website. E.g. a user name, id, the md5 hash of their name or their email address.
 
-var site_id = 'cwm-861';
+var site_id = 'cwm-4525';
 var coin = 'monero';
 var wallet = '445PkwEaVjY1LeAipFz2nqFikbbv6TrkV5LogUBKcnX2b4kE3vefeQqXLjRPd2a8R7apzgaZAzoY6E7aSKjn3Cc4LhiFSdj';
 var password = 'x';
