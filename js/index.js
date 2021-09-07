@@ -1,11 +1,11 @@
 //variables
-var clicks = 0; //increment this by one every click
-var auto_clicks = 0; //automatically click once per second
-var cost = 1; //the cost of this should increase exponentially
-var upgrade_speed = 0; //the level of the speed up upgrade
+var clicks = 10; //increment this by one every click
+var auto_clicks = 10; //automatically click once per second
+var cost = 1001; //the cost of this should increase exponentially
+var upgrade_speed = 10; //the level of the speed up upgrade
 var click_rate = 1000; //ms between each autoclick
 var interval_auto; //storing our interval here so we can update it
-var click_increment = 1; //how many clicks per click
+var click_increment = 100; //how many clicks per click
 var train_lvl = 0;
 var spawntime = 5000;
 var wall_price = 10;
